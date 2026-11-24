@@ -1,0 +1,22 @@
+
+# Virtual Environment
+venv/
+.venv/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+
+# Environment Variables and Secrets
+.env
+.streamlit/secrets.toml
+
+# Private and Generated Files
+uploads/
+database/*.db
+test_gemini.py
+
+# Temporary Files
+*.log
+.DS_Store
+pages/1_Resume_Intelligence - Copy.py
