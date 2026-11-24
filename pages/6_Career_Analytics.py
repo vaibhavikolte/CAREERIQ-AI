@@ -501,12 +501,20 @@ def chart_layout(fig, height=300):
 try:
     records = get_analytics_data()
 
-    df = pd.DataFrame(records)
+    df = pd.DataFrame(
+        records,
+        columns=[
+            "id",
+            "event_type",
+            "score",
+            "details",
+            "created_at"
+        ]
+    )
 
 except Exception as error:
     st.error(f"Could not load analytics data: {error}")
     st.stop()
-
 
 required_columns = [
     "created_at",
@@ -693,7 +701,11 @@ elif date_filter == "Last 90 Days":
     start_date = today - timedelta(days=89)
 
 else:
-    start_date = df["created_at"].min().date()
+    start_date = (
+        df["created_at"].min().date()
+        if not df.empty
+        else today
+    )
 
 
 filtered = df[
